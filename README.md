@@ -7,6 +7,7 @@ This code is largely based on [pybullet-gym](https://github.com/benelot/pybullet
 ```bash
 pip install gym
 pip install pybullet
+pip install stable-baselines[mpi]
 git clone https://github.com/PierreExeter/gym-reacher.git
 cd reacher
 pip install -e .

@@ -2,8 +2,8 @@ import gym
 import gym_reacher
 import time
 
-env = gym.make('Reacher1Dof-v0')
-# env = gym.make('Reacher2Dof-v0')
+# env = gym.make('Reacher1Dof-v0')
+env = gym.make('Reacher2Dof-v0')
 # env = gym.make('Reacher3Dof-v0')
 # env = gym.make('Reacher4Dof-v0')
 # env = gym.make('Reacher5Dof-v0')
@@ -24,9 +24,9 @@ for episode in range(20):
     
     for t in range(100):
         action = env.action_space.sample()  
-        print(action)
         state, reward, done, info = env.step(action) 
-        print(state)
+
+        print ("Episode: {0}\n Time step: {1}\n Action: {2}\n State: {3}\n Reward: {4}".format(episode, t, action, state, reward))
         rewards.append(reward)
         time.sleep(1./30.) 
 
