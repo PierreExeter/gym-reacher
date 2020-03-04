@@ -17,7 +17,7 @@ Important Note: *Do not* use `python setup.py install`.
 
 ## Test your installation
 ```bash
-python test_gym_reacher.py
+python scripts/test_gym_reacher.py
 ```
 
 ## Supported systems
