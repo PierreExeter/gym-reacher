@@ -38,16 +38,23 @@ class ReacherBulletEnv1(BaseBulletEnv):
         # Define done: an episode is successful if the distance fingertip - target <= 0.01
         done = False
         info = self.extra_info()
-        dist_ft_t = info[2]
 
-        if dist_ft_t <= 0.01:    
+        if info["dist_ft_t"] <= 0.01:    
             done = True
 
         return state, sum(self.rewards), done, info
 
     def extra_info(self):
         dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
-        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
+        info = {
+            "dist_ft_origin": dist_ft_origin,
+            "dist_t_origin": dist_t_origin,
+            "dist_ft_t": dist_ft_t,
+            "max_reach": max_reach
+            }
+        
+        return info
 
     def camera_adjust(self):
         x, y, z = self.robot.fingertip.pose().xyz()
@@ -85,16 +92,23 @@ class ReacherBulletEnv2(BaseBulletEnv):
         # Define done: an episode is successful if the distance fingertip - target <= 0.01
         done = False
         info = self.extra_info()
-        dist_ft_t = info[2]
 
-        if dist_ft_t <= 0.01:    
+        if info["dist_ft_t"] <= 0.01:    
             done = True
 
         return state, sum(self.rewards), done, info
 
     def extra_info(self):
         dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
-        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
+        info = {
+            "dist_ft_origin": dist_ft_origin,
+            "dist_t_origin": dist_t_origin,
+            "dist_ft_t": dist_ft_t,
+            "max_reach": max_reach
+            }
+        
+        return info
 
 
     def camera_adjust(self):
@@ -134,16 +148,23 @@ class ReacherBulletEnv3(BaseBulletEnv):
         # Define done: an episode is successful if the distance fingertip - target <= 0.01
         done = False
         info = self.extra_info()
-        dist_ft_t = info[2]
 
-        if dist_ft_t <= 0.01:    
+        if info["dist_ft_t"] <= 0.01:    
             done = True
 
         return state, sum(self.rewards), done, info
 
     def extra_info(self):
         dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
-        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
+        info = {
+            "dist_ft_origin": dist_ft_origin,
+            "dist_t_origin": dist_t_origin,
+            "dist_ft_t": dist_ft_t,
+            "max_reach": max_reach
+            }
+        
+        return info
 
 
     def camera_adjust(self):
@@ -184,16 +205,23 @@ class ReacherBulletEnv4(BaseBulletEnv):
         # Define done: an episode is successful if the distance fingertip - target <= 0.01
         done = False
         info = self.extra_info()
-        dist_ft_t = info[2]
 
-        if dist_ft_t <= 0.01:    
+        if info["dist_ft_t"] <= 0.01:    
             done = True
 
         return state, sum(self.rewards), done, info
 
     def extra_info(self):
         dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
-        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
+        info = {
+            "dist_ft_origin": dist_ft_origin,
+            "dist_t_origin": dist_t_origin,
+            "dist_ft_t": dist_ft_t,
+            "max_reach": max_reach
+            }
+        
+        return info
 
 
     def camera_adjust(self):
@@ -233,16 +261,23 @@ class ReacherBulletEnv5(BaseBulletEnv):
         # Define done: an episode is successful if the distance fingertip - target <= 0.01
         done = False
         info = self.extra_info()
-        dist_ft_t = info[2]
 
-        if dist_ft_t <= 0.01:    
+        if info["dist_ft_t"] <= 0.01:    
             done = True
 
         return state, sum(self.rewards), done, info
 
     def extra_info(self):
         dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
-        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
+        info = {
+            "dist_ft_origin": dist_ft_origin,
+            "dist_t_origin": dist_t_origin,
+            "dist_ft_t": dist_ft_t,
+            "max_reach": max_reach
+            }
+        
+        return info
 
 
     def camera_adjust(self):
@@ -281,16 +316,23 @@ class ReacherBulletEnv6(BaseBulletEnv):
         # Define done: an episode is successful if the distance fingertip - target <= 0.01
         done = False
         info = self.extra_info()
-        dist_ft_t = info[2]
 
-        if dist_ft_t <= 0.01:    
+        if info["dist_ft_t"] <= 0.01:    
             done = True
 
         return state, sum(self.rewards), done, info
 
     def extra_info(self):
         dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
-        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
+        info = {
+            "dist_ft_origin": dist_ft_origin,
+            "dist_t_origin": dist_t_origin,
+            "dist_ft_t": dist_ft_t,
+            "max_reach": max_reach
+            }
+        
+        return info
 
 
     def camera_adjust(self):

@@ -4,12 +4,12 @@ import time
 from stable_baselines.common.env_checker import check_env
 
 
-# env = gym.make('Reacher1Dof-v0')
+env = gym.make('Reacher1Dof-v0')
 # env = gym.make('Reacher2Dof-v0')
 # env = gym.make('Reacher3Dof-v0')
 # env = gym.make('Reacher4Dof-v0')
 # env = gym.make('Reacher5Dof-v0')
-env = gym.make('Reacher6Dof-v0')
+# env = gym.make('Reacher6Dof-v0')
 
 # print("starting check")
 # check_env(env, warn=True)
@@ -32,7 +32,7 @@ for episode in range(20):
     for t in range(100):
         action = env.action_space.sample()  
         obs, reward, done, info = env.step(action) 
-        # print ("Episode: {0}\n Time step: {1}\n Action: {2}\n Observation: {3}\n Reward: {4}".format(episode, t, action, obs, reward))
+        # print ("Episode: {0}\n Time step: {1}\n Action: {2}\n Observation: {3}\n Reward: {4}\n done: {5} \n info: {6}".format(episode, t, action, obs, reward, done, info))
         rewards.append(reward)
         time.sleep(1./30.) 
 

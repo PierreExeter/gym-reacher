@@ -35,7 +35,7 @@ for episode in range(20):
         # action = env.action_space.sample()  
         action, _states = model.predict(obs)
         obs, reward, done, info = env.step(action) 
-        print ("Episode: {0}\n Time step: {1}\n Action: {2}\n Observation: {3}\n Reward: {4}".format(episode, t, action, obs, reward))
+        print ("Episode: {0}\n Time step: {1}\n Action: {2}\n Observation: {3}\n Reward: {4}\n done: {5} \n info: {6}".format(episode, t, action, obs, reward, done, info))
         rewards.append(reward)
         time.sleep(1./30.) 
 
