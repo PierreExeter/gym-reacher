@@ -34,7 +34,20 @@ class ReacherBulletEnv1(BaseBulletEnv):
         stuck_joint_cost = 0  #-0.1 if np.abs(np.abs(self.robot.gamma) - 1) < 0.01 else 0.0
         self.rewards = [float(self.potential - potential_old), float(electricity_cost), float(stuck_joint_cost)]
         self.HUD(state, a, False)
-        return state, sum(self.rewards), False, {}
+
+        # Define done: an episode is successful if the distance fingertip - target <= 0.01
+        done = False
+        info = self.extra_info()
+        dist_ft_t = info[2]
+
+        if dist_ft_t <= 0.01:    
+            done = True
+
+        return state, sum(self.rewards), done, info
+
+    def extra_info(self):
+        dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
 
     def camera_adjust(self):
         x, y, z = self.robot.fingertip.pose().xyz()
@@ -68,7 +81,21 @@ class ReacherBulletEnv2(BaseBulletEnv):
         stuck_joint_cost = 0  #-0.1 if np.abs(np.abs(self.robot.gamma) - 1) < 0.01 else 0.0
         self.rewards = [float(self.potential - potential_old), float(electricity_cost), float(stuck_joint_cost)]
         self.HUD(state, a, False)
-        return state, sum(self.rewards), False, {}
+
+        # Define done: an episode is successful if the distance fingertip - target <= 0.01
+        done = False
+        info = self.extra_info()
+        dist_ft_t = info[2]
+
+        if dist_ft_t <= 0.01:    
+            done = True
+
+        return state, sum(self.rewards), done, info
+
+    def extra_info(self):
+        dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
 
     def camera_adjust(self):
         x, y, z = self.robot.fingertip.pose().xyz()
@@ -103,7 +130,21 @@ class ReacherBulletEnv3(BaseBulletEnv):
         stuck_joint_cost = 0 #-0.1 if np.abs(np.abs(self.robot.angle1) - 1) < 0.01 else 0.0
         self.rewards = [float(self.potential - potential_old), float(electricity_cost), float(stuck_joint_cost)]
         self.HUD(state, a, False)
-        return state, sum(self.rewards), False, {}
+
+        # Define done: an episode is successful if the distance fingertip - target <= 0.01
+        done = False
+        info = self.extra_info()
+        dist_ft_t = info[2]
+
+        if dist_ft_t <= 0.01:    
+            done = True
+
+        return state, sum(self.rewards), done, info
+
+    def extra_info(self):
+        dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
 
     def camera_adjust(self):
         x, y, z = self.robot.fingertip.pose().xyz()
@@ -139,7 +180,21 @@ class ReacherBulletEnv4(BaseBulletEnv):
         stuck_joint_cost = 0 #-0.1 if np.abs(np.abs(self.robot.angle1) - 1) < 0.01 else 0.0
         self.rewards = [float(self.potential - potential_old), float(electricity_cost), float(stuck_joint_cost)]
         self.HUD(state, a, False)
-        return state, sum(self.rewards), False, {}
+
+        # Define done: an episode is successful if the distance fingertip - target <= 0.01
+        done = False
+        info = self.extra_info()
+        dist_ft_t = info[2]
+
+        if dist_ft_t <= 0.01:    
+            done = True
+
+        return state, sum(self.rewards), done, info
+
+    def extra_info(self):
+        dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
 
     def camera_adjust(self):
         x, y, z = self.robot.fingertip.pose().xyz()
@@ -174,7 +229,21 @@ class ReacherBulletEnv5(BaseBulletEnv):
         stuck_joint_cost = 0 #-0.1 if np.abs(np.abs(self.robot.angle1) - 1) < 0.01 else 0.0
         self.rewards = [float(self.potential - potential_old), float(electricity_cost), float(stuck_joint_cost)]
         self.HUD(state, a, False)
-        return state, sum(self.rewards), False, {}
+
+        # Define done: an episode is successful if the distance fingertip - target <= 0.01
+        done = False
+        info = self.extra_info()
+        dist_ft_t = info[2]
+
+        if dist_ft_t <= 0.01:    
+            done = True
+
+        return state, sum(self.rewards), done, info
+
+    def extra_info(self):
+        dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
 
     def camera_adjust(self):
         x, y, z = self.robot.fingertip.pose().xyz()
@@ -208,7 +277,21 @@ class ReacherBulletEnv6(BaseBulletEnv):
         stuck_joint_cost = 0 #-0.1 if np.abs(np.abs(self.robot.angle1) - 1) < 0.01 else 0.0
         self.rewards = [float(self.potential - potential_old), float(electricity_cost), float(stuck_joint_cost)]
         self.HUD(state, a, False)
-        return state, sum(self.rewards), False, {}
+
+        # Define done: an episode is successful if the distance fingertip - target <= 0.01
+        done = False
+        info = self.extra_info()
+        dist_ft_t = info[2]
+
+        if dist_ft_t <= 0.01:    
+            done = True
+
+        return state, sum(self.rewards), done, info
+
+    def extra_info(self):
+        dist_ft_origin, dist_t_origin, dist_ft_t, max_reach = self.robot.robot_info()
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
 
     def camera_adjust(self):
         x, y, z = self.robot.fingertip.pose().xyz()

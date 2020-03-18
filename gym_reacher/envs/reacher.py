@@ -3,23 +3,31 @@ import numpy as np
 
 
 class Reacher1(MJCFBasedRobot):
-    TARG_LIMIT = 0.27
+    TARG_LIMIT = 0.11 #0.27 #0.01 #0.27
 
     def __init__(self):
         MJCFBasedRobot.__init__(self, 'reacher_1dof.xml', 'body0', action_dim=1, obs_dim=6)
 
     def robot_specific_reset(self, bullet_client):
-        self.jdict["target_x"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
-        self.jdict["target_y"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
 
         self.fingertip = self.parts["fingertip"]
         self.target = self.parts["target"]
-
         self.joint0 = self.jdict["joint0"]
 
         self.joint0.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
+
+        # make sure that the target is reachable
+        self.dist_target_origin = 1
+        self.max_reach = 0
+
+        while self.dist_target_origin > self.max_reach:
+
+            self.jdict["target_x"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+            self.jdict["target_y"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+
+            _, self.dist_target_origin, _, self.max_reach = self.robot_info()
 
     def apply_action(self, a):
         assert (np.isfinite(a).all())
@@ -31,7 +39,7 @@ class Reacher1(MJCFBasedRobot):
         target_x, _ = self.jdict["target_x"].current_position()
         target_y, _ = self.jdict["target_y"].current_position()
 
-        self.to_target_vec = np.array(self.fingertip.pose().xyz()) - np.array(self.target.pose().xyz())
+        self.to_target_vec = np.array(self.fingertip.pose().xyz()) - np.array(self.target.pose().xyz())   
 
         return np.array([
             target_x,
@@ -45,19 +53,26 @@ class Reacher1(MJCFBasedRobot):
     def calc_potential(self):
         return -100 * np.linalg.norm(self.to_target_vec)
 
+    def robot_info(self):
+
+        self.target_vect = np.array(self.target.pose().xyz())[:-1]
+        self.fingertip_vect = np.array(self.fingertip.pose().xyz())[:-1]
+
+        dist_ft_origin = np.linalg.norm(self.fingertip_vect) 
+        dist_t_origin = np.linalg.norm(self.target_vect)
+        dist_ft_t = np.linalg.norm(self.fingertip_vect - self.target_vect)
+        max_reach = 0.11
+
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
 
 
 class Reacher2(MJCFBasedRobot):
-    TARG_LIMIT = 0.27
+    TARG_LIMIT = 0.22 #0.27
 
     def __init__(self):
         MJCFBasedRobot.__init__(self, 'reacher_2dof.xml', 'body0', action_dim=2, obs_dim=8)
 
     def robot_specific_reset(self, bullet_client):
-        self.jdict["target_x"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
-        self.jdict["target_y"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
 
         self.fingertip = self.parts["fingertip"]
         self.target = self.parts["target"]
@@ -67,6 +82,19 @@ class Reacher2(MJCFBasedRobot):
 
         self.joint0.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
         self.joint1.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
+
+        # make sure that the target is reachable
+        self.dist_target_origin = 1
+        self.max_reach = 0
+
+        while self.dist_target_origin > self.max_reach:
+
+            self.jdict["target_x"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+            self.jdict["target_y"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+
+            _, self.dist_target_origin, _, self.max_reach = self.robot_info()
 
     def apply_action(self, a):
         assert (np.isfinite(a).all())
@@ -96,19 +124,25 @@ class Reacher2(MJCFBasedRobot):
     def calc_potential(self):
         return -100 * np.linalg.norm(self.to_target_vec)
 
+    def robot_info(self):
 
+        self.target_vect = np.array(self.target.pose().xyz())[:-1]
+        self.fingertip_vect = np.array(self.fingertip.pose().xyz())[:-1]
+
+        dist_ft_origin = np.linalg.norm(self.fingertip_vect) 
+        dist_t_origin = np.linalg.norm(self.target_vect)
+        dist_ft_t = np.linalg.norm(self.fingertip_vect - self.target_vect)
+        max_reach = 0.11*2
+
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
 
 class Reacher3(MJCFBasedRobot):
-    TARG_LIMIT = 0.27
+    TARG_LIMIT = 0.33 #0.27
 
     def __init__(self):
         MJCFBasedRobot.__init__(self, 'reacher_3dof.xml', 'body0', action_dim=3, obs_dim=10)
 
     def robot_specific_reset(self, bullet_client):
-        self.jdict["target_x"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
-        self.jdict["target_y"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
 
         self.fingertip = self.parts["fingertip"]
         self.target = self.parts["target"]
@@ -120,6 +154,19 @@ class Reacher3(MJCFBasedRobot):
         self.joint0.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
         self.joint1.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
         self.joint2.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
+
+        # make sure that the target is reachable
+        self.dist_target_origin = 1
+        self.max_reach = 0
+
+        while self.dist_target_origin > self.max_reach:
+
+            self.jdict["target_x"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+            self.jdict["target_y"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+
+            _, self.dist_target_origin, _, self.max_reach = self.robot_info()
 
     def apply_action(self, a):
         assert (np.isfinite(a).all())
@@ -153,18 +200,26 @@ class Reacher3(MJCFBasedRobot):
     def calc_potential(self):
         return -100 * np.linalg.norm(self.to_target_vec)
 
+    def robot_info(self):
+
+        self.target_vect = np.array(self.target.pose().xyz())[:-1]
+        self.fingertip_vect = np.array(self.fingertip.pose().xyz())[:-1]
+
+        dist_ft_origin = np.linalg.norm(self.fingertip_vect) 
+        dist_t_origin = np.linalg.norm(self.target_vect)
+        dist_ft_t = np.linalg.norm(self.fingertip_vect - self.target_vect)
+        max_reach = 0.11*3
+
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
+
 
 class Reacher4(MJCFBasedRobot):
-    TARG_LIMIT = 0.27
+    TARG_LIMIT = 0.44 #0.27
 
     def __init__(self):
         MJCFBasedRobot.__init__(self, 'reacher_4dof.xml', 'body0', action_dim=4, obs_dim=12)
 
     def robot_specific_reset(self, bullet_client):
-        self.jdict["target_x"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
-        self.jdict["target_y"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
 
         self.fingertip = self.parts["fingertip"]
         self.target = self.parts["target"]
@@ -178,6 +233,19 @@ class Reacher4(MJCFBasedRobot):
         self.joint1.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
         self.joint2.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
         self.joint3.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
+
+        # make sure that the target is reachable
+        self.dist_target_origin = 1
+        self.max_reach = 0
+
+        while self.dist_target_origin > self.max_reach:
+
+            self.jdict["target_x"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+            self.jdict["target_y"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+
+            _, self.dist_target_origin, _, self.max_reach = self.robot_info()
         
     def apply_action(self, a):
         assert (np.isfinite(a).all())
@@ -215,18 +283,25 @@ class Reacher4(MJCFBasedRobot):
     def calc_potential(self):
         return -100 * np.linalg.norm(self.to_target_vec)
 
+    def robot_info(self):
+
+        self.target_vect = np.array(self.target.pose().xyz())[:-1]
+        self.fingertip_vect = np.array(self.fingertip.pose().xyz())[:-1]
+
+        dist_ft_origin = np.linalg.norm(self.fingertip_vect) 
+        dist_t_origin = np.linalg.norm(self.target_vect)
+        dist_ft_t = np.linalg.norm(self.fingertip_vect - self.target_vect)
+        max_reach = 0.11*4
+
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
 
 class Reacher5(MJCFBasedRobot):
-    TARG_LIMIT = 0.27
+    TARG_LIMIT = 0.55  #0.27
 
     def __init__(self):
         MJCFBasedRobot.__init__(self, 'reacher_5dof.xml', 'body0', action_dim=5, obs_dim=14)
 
     def robot_specific_reset(self, bullet_client):
-        self.jdict["target_x"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
-        self.jdict["target_y"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
 
         self.fingertip = self.parts["fingertip"]
         self.target = self.parts["target"]
@@ -242,6 +317,19 @@ class Reacher5(MJCFBasedRobot):
         self.joint2.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
         self.joint3.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
         self.joint4.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
+
+        # make sure that the target is reachable
+        self.dist_target_origin = 1
+        self.max_reach = 0
+
+        while self.dist_target_origin > self.max_reach:
+
+            self.jdict["target_x"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+            self.jdict["target_y"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+
+            _, self.dist_target_origin, _, self.max_reach = self.robot_info()
         
     def apply_action(self, a):
         assert (np.isfinite(a).all())
@@ -283,18 +371,25 @@ class Reacher5(MJCFBasedRobot):
     def calc_potential(self):
         return -100 * np.linalg.norm(self.to_target_vec)
 
+    def robot_info(self):
+
+        self.target_vect = np.array(self.target.pose().xyz())[:-1]
+        self.fingertip_vect = np.array(self.fingertip.pose().xyz())[:-1]
+
+        dist_ft_origin = np.linalg.norm(self.fingertip_vect) 
+        dist_t_origin = np.linalg.norm(self.target_vect)
+        dist_ft_t = np.linalg.norm(self.fingertip_vect - self.target_vect)
+        max_reach = 0.11*5
+
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
 
 class Reacher6(MJCFBasedRobot):
-    TARG_LIMIT = 0.27
+    TARG_LIMIT = 0.66 #0.27
 
     def __init__(self):
         MJCFBasedRobot.__init__(self, 'reacher_6dof.xml', 'body0', action_dim=6, obs_dim=16)
 
     def robot_specific_reset(self, bullet_client):
-        self.jdict["target_x"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
-        self.jdict["target_y"].reset_current_position(
-            self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
 
         self.fingertip = self.parts["fingertip"]
         self.target = self.parts["target"]
@@ -312,6 +407,20 @@ class Reacher6(MJCFBasedRobot):
         self.joint3.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
         self.joint4.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
         self.joint5.reset_current_position(self.np_random.uniform(low=-3.14, high=3.14), 0)
+
+        # make sure that the target is reachable
+        self.dist_target_origin = 1
+        self.max_reach = 0
+
+        while self.dist_target_origin > self.max_reach:
+
+            self.jdict["target_x"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+            self.jdict["target_y"].reset_current_position(
+                self.np_random.uniform(low=-self.TARG_LIMIT, high=self.TARG_LIMIT), 0)
+
+            _, self.dist_target_origin, _, self.max_reach = self.robot_info()
+            
         
     def apply_action(self, a):
         assert (np.isfinite(a).all())
@@ -357,5 +466,15 @@ class Reacher6(MJCFBasedRobot):
     def calc_potential(self):
         return -100 * np.linalg.norm(self.to_target_vec)
 
+    def robot_info(self):
 
+        self.target_vect = np.array(self.target.pose().xyz())[:-1]
+        self.fingertip_vect = np.array(self.fingertip.pose().xyz())[:-1]
+
+        dist_ft_origin = np.linalg.norm(self.fingertip_vect) 
+        dist_t_origin = np.linalg.norm(self.target_vect)
+        dist_ft_t = np.linalg.norm(self.fingertip_vect - self.target_vect)
+        max_reach = 0.11*6
+
+        return dist_ft_origin, dist_t_origin, dist_ft_t, max_reach
 

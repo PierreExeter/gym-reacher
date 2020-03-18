@@ -36,19 +36,21 @@ for env_name in env_list:
     # env_name = 'Reacher6Dof-v0'
 
     env = gym.make(env_name)
-    env = DummyVecEnv([lambda: env])  # The algorithms require a vectorized environment to run
+    # env = DummyVecEnv([lambda: env])  # The algorithms require a vectorized environment to run
 
     res_dir = "../results/"+env_name
     tensorboard_dir = res_dir+"/tensorboard_logs/"
     reward_dir = res_dir+"/reward_vs_steps/"
     trained_dir = res_dir+"/trained_models/"
     time_dir = res_dir+"/time/"
+    acc_dir = res_dir+"/accuracy/"
 
     Path(res_dir).mkdir(parents=True, exist_ok=True)
     Path(tensorboard_dir).mkdir(parents=True, exist_ok=True)
     Path(reward_dir).mkdir(parents=True, exist_ok=True)
     Path(trained_dir).mkdir(parents=True, exist_ok=True)
     Path(time_dir).mkdir(parents=True, exist_ok=True)
+    Path(acc_dir).mkdir(parents=True, exist_ok=True)
 
     # The noise objects for TD3
     n_actions = env.action_space.shape[-1]
