@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.5)  6 MAR 2020 21:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.5)  19 MAR 2020 12:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -172,7 +172,7 @@ Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
 \multirow@dima=\skip48
 \bigstrutjot=\dimen121
 )
-No file RL_benchmark_reach.aux.
+(./RL_benchmark_reach.aux)
 \openout1 = `RL_benchmark_reach.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
@@ -187,6 +187,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
+
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count100
@@ -271,86 +272,76 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 LaTeX Warning: No \author given.
 
+<reacher6dof.png, id=1, 1161.33875pt x 647.41875pt>
+File: reacher6dof.png Graphic file (type png)
+<use reacher6dof.png>
+Package pdftex.def Info: reacher6dof.png  used on input line 38.
+(pdftex.def)             Requested size: 452.9679pt x 252.52193pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 29.
+(Font)              <7> on input line 54.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 29.
+(Font)              <5> on input line 54.
 
-Overfull \hbox (54.97745pt too wide) in alignment at lines 27--48
+Overfull \hbox (54.97745pt too wide) in alignment at lines 52--73
  [] [] [] [] [] [] 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 48
+Underfull \vbox (badness 10000) detected at line 73
  []
 
 
-Overfull \hbox (54.97745pt too wide) in alignment at lines 48--68
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (54.97745pt too wide) in alignment at lines 68--88
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (54.97745pt too wide) in alignment at lines 88--94
+Overfull \hbox (54.97745pt too wide) in alignment at lines 73--93
  [] [] [] [] [] [] 
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 98--99
-
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./reacher6dof.png>]
+Overfull \hbox (54.97745pt too wide) in alignment at lines 93--113
+ [] [] [] [] [] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 104--106
-
+Overfull \hbox (54.97745pt too wide) in alignment at lines 113--119
+ [] [] [] [] [] [] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 107--108
-
- []
-
-<../A2C.pdf, id=9, 887.7384pt x 374.14897pt>
+[2]
+<../A2C.pdf, id=13, 887.7384pt x 374.14897pt>
 File: ../A2C.pdf Graphic file (type pdf)
 <use ../A2C.pdf>
-Package pdftex.def Info: ../A2C.pdf  used on input line 123.
+Package pdftex.def Info: ../A2C.pdf  used on input line 139.
 (pdftex.def)             Requested size: 452.9679pt x 190.91049pt.
-[2]
-<../ACKTR.pdf, id=13, 887.7384pt x 374.14897pt>
+<../ACKTR.pdf, id=14, 887.7384pt x 374.14897pt>
 File: ../ACKTR.pdf Graphic file (type pdf)
 <use ../ACKTR.pdf>
-Package pdftex.def Info: ../ACKTR.pdf  used on input line 129.
+Package pdftex.def Info: ../ACKTR.pdf  used on input line 145.
 (pdftex.def)             Requested size: 452.9679pt x 190.91049pt.
-<../DDPG.pdf, id=14, 887.7384pt x 374.14897pt>
+<../DDPG.pdf, id=15, 887.7384pt x 374.14897pt>
 File: ../DDPG.pdf Graphic file (type pdf)
 <use ../DDPG.pdf>
-Package pdftex.def Info: ../DDPG.pdf  used on input line 135.
+Package pdftex.def Info: ../DDPG.pdf  used on input line 151.
 (pdftex.def)             Requested size: 452.9679pt x 190.91049pt.
  [3 <../A2C.pdf> <../ACKTR.pdf
 
 pdfTeX warning: pdflatex (file ../ACKTR.pdf): PDF inclusion: multiple pdfs with
  page group included in a single page
 >]
-<../PPO1.pdf, id=99, 887.7384pt x 374.14897pt>
+<../PPO1.pdf, id=100, 887.7384pt x 374.14897pt>
 File: ../PPO1.pdf Graphic file (type pdf)
 <use ../PPO1.pdf>
-Package pdftex.def Info: ../PPO1.pdf  used on input line 141.
+Package pdftex.def Info: ../PPO1.pdf  used on input line 157.
 (pdftex.def)             Requested size: 452.9679pt x 190.91049pt.
-<../PPO2.pdf, id=100, 887.7384pt x 374.14897pt>
+<../PPO2.pdf, id=101, 887.7384pt x 374.14897pt>
 File: ../PPO2.pdf Graphic file (type pdf)
 <use ../PPO2.pdf>
-Package pdftex.def Info: ../PPO2.pdf  used on input line 147.
+Package pdftex.def Info: ../PPO2.pdf  used on input line 163.
 (pdftex.def)             Requested size: 452.9679pt x 190.91049pt.
-<../SAC.pdf, id=101, 887.7384pt x 374.14897pt>
+<../SAC.pdf, id=102, 887.7384pt x 374.14897pt>
 File: ../SAC.pdf Graphic file (type pdf)
 <use ../SAC.pdf>
-Package pdftex.def Info: ../SAC.pdf  used on input line 153.
+Package pdftex.def Info: ../SAC.pdf  used on input line 169.
 (pdftex.def)             Requested size: 452.9679pt x 190.91049pt.
  [4 <../DDPG.pdf> <../PPO1.pdf
 
@@ -361,20 +352,20 @@ page group included in a single page
 pdfTeX warning: pdflatex (file ../PPO2.pdf): PDF inclusion: multiple pdfs with 
 page group included in a single page
 >]
-<../TD3.pdf, id=223, 887.7384pt x 374.14897pt>
+<../TD3.pdf, id=224, 887.7384pt x 374.14897pt>
 File: ../TD3.pdf Graphic file (type pdf)
 <use ../TD3.pdf>
-Package pdftex.def Info: ../TD3.pdf  used on input line 159.
+Package pdftex.def Info: ../TD3.pdf  used on input line 175.
 (pdftex.def)             Requested size: 452.9679pt x 190.91049pt.
-<../TRPO.pdf, id=224, 887.7384pt x 374.14897pt>
+<../TRPO.pdf, id=225, 887.7384pt x 374.14897pt>
 File: ../TRPO.pdf Graphic file (type pdf)
 <use ../TRPO.pdf>
-Package pdftex.def Info: ../TRPO.pdf  used on input line 165.
+Package pdftex.def Info: ../TRPO.pdf  used on input line 181.
 (pdftex.def)             Requested size: 452.9679pt x 190.91049pt.
-<../Reacher1Dof-v0/reacher1.pdf, id=225, 885.56787pt x 336.40369pt>
+<../Reacher1Dof-v0/reacher1.pdf, id=226, 885.56787pt x 336.40369pt>
 File: ../Reacher1Dof-v0/reacher1.pdf Graphic file (type pdf)
 <use ../Reacher1Dof-v0/reacher1.pdf>
-Package pdftex.def Info: ../Reacher1Dof-v0/reacher1.pdf  used on input line 175
+Package pdftex.def Info: ../Reacher1Dof-v0/reacher1.pdf  used on input line 191
 .
 (pdftex.def)             Requested size: 452.9679pt x 172.06665pt.
  [5 <../SAC.pdf> <../TD3.pdf
@@ -386,22 +377,22 @@ age group included in a single page
 pdfTeX warning: pdflatex (file ../TRPO.pdf): PDF inclusion: multiple pdfs with 
 page group included in a single page
 >]
-<../Reacher2Dof-v0/reacher2.pdf, id=348, 885.56787pt x 336.40369pt>
+<../Reacher2Dof-v0/reacher2.pdf, id=349, 885.56787pt x 336.40369pt>
 File: ../Reacher2Dof-v0/reacher2.pdf Graphic file (type pdf)
 <use ../Reacher2Dof-v0/reacher2.pdf>
-Package pdftex.def Info: ../Reacher2Dof-v0/reacher2.pdf  used on input line 181
+Package pdftex.def Info: ../Reacher2Dof-v0/reacher2.pdf  used on input line 197
 .
 (pdftex.def)             Requested size: 452.9679pt x 172.06665pt.
-<../Reacher3Dof-v0/reacher3.pdf, id=349, 885.56787pt x 336.40369pt>
+<../Reacher3Dof-v0/reacher3.pdf, id=350, 885.56787pt x 336.40369pt>
 File: ../Reacher3Dof-v0/reacher3.pdf Graphic file (type pdf)
 <use ../Reacher3Dof-v0/reacher3.pdf>
-Package pdftex.def Info: ../Reacher3Dof-v0/reacher3.pdf  used on input line 187
+Package pdftex.def Info: ../Reacher3Dof-v0/reacher3.pdf  used on input line 203
 .
 (pdftex.def)             Requested size: 452.9679pt x 172.06665pt.
-<../Reacher4Dof-v0/reacher4.pdf, id=350, 885.56787pt x 336.40369pt>
+<../Reacher4Dof-v0/reacher4.pdf, id=351, 885.56787pt x 336.40369pt>
 File: ../Reacher4Dof-v0/reacher4.pdf Graphic file (type pdf)
 <use ../Reacher4Dof-v0/reacher4.pdf>
-Package pdftex.def Info: ../Reacher4Dof-v0/reacher4.pdf  used on input line 193
+Package pdftex.def Info: ../Reacher4Dof-v0/reacher4.pdf  used on input line 209
 .
 (pdftex.def)             Requested size: 452.9679pt x 172.06665pt.
  [6 <../Reacher1Dof-v0/reacher1.pdf> <../Reacher2Dof-v0/reacher2.pdf
@@ -413,16 +404,16 @@ multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex (file ../Reacher3Dof-v0/reacher3.pdf): PDF inclusion: 
 multiple pdfs with page group included in a single page
 >]
-<../Reacher5Dof-v0/reacher5.pdf, id=493, 885.56787pt x 336.40369pt>
+<../Reacher5Dof-v0/reacher5.pdf, id=494, 885.56787pt x 336.40369pt>
 File: ../Reacher5Dof-v0/reacher5.pdf Graphic file (type pdf)
 <use ../Reacher5Dof-v0/reacher5.pdf>
-Package pdftex.def Info: ../Reacher5Dof-v0/reacher5.pdf  used on input line 199
+Package pdftex.def Info: ../Reacher5Dof-v0/reacher5.pdf  used on input line 215
 .
 (pdftex.def)             Requested size: 452.9679pt x 172.06665pt.
-<../Reacher6Dof-v0/reacher6.pdf, id=494, 885.56787pt x 336.40369pt>
+<../Reacher6Dof-v0/reacher6.pdf, id=495, 885.56787pt x 336.40369pt>
 File: ../Reacher6Dof-v0/reacher6.pdf Graphic file (type pdf)
 <use ../Reacher6Dof-v0/reacher6.pdf>
-Package pdftex.def Info: ../Reacher6Dof-v0/reacher6.pdf  used on input line 205
+Package pdftex.def Info: ../Reacher6Dof-v0/reacher6.pdf  used on input line 221
 .
 (pdftex.def)             Requested size: 452.9679pt x 172.06665pt.
  [7 <../Reacher4Dof-v0/reacher4.pdf> <../Reacher5Dof-v0/reacher5.pdf
@@ -433,23 +424,23 @@ multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ../Reacher6Dof-v0/reacher6.pdf): PDF inclusion: 
 multiple pdfs with page group included in a single page
->] (./RL_benchmark_reach.aux) ) 
+>] [8] (./RL_benchmark_reach.aux) ) 
 Here is how much of TeX's memory you used:
- 3396 strings out of 492982
- 54342 string characters out of 6134896
- 135875 words of memory out of 5000000
- 6933 multiletter control sequences out of 15000+600000
+ 3403 strings out of 492982
+ 54484 string characters out of 6134896
+ 133980 words of memory out of 5000000
+ 6938 multiletter control sequences out of 15000+600000
  7280 words of font info for 26 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,11n,40p,293b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr17.pfb>
-Output written on RL_benchmark_reach.pdf (7 pages, 227736 bytes).
+ 42i,11n,40p,506b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr17.pfb>
+Output written on RL_benchmark_reach.pdf (8 pages, 324601 bytes).
 PDF statistics:
- 651 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
+ 655 PDF objects out of 1000 (max. 8388607)
+ 104 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

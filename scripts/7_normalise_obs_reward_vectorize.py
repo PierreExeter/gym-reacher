@@ -1,7 +1,7 @@
 import gym
 import gym_reacher
 
-from stable_baselines.common.vec_env import VecNormalize, VecFrameStack
+from stable_baselines.common.vec_env import VecNormalize
 from stable_baselines.common.vec_env import DummyVecEnv
 
 

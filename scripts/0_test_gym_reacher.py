@@ -4,12 +4,12 @@ import time
 from stable_baselines.common.env_checker import check_env
 
 
-env = gym.make('Reacher1Dof-v0')
+# env = gym.make('Reacher1Dof-v0')
 # env = gym.make('Reacher2Dof-v0')
 # env = gym.make('Reacher3Dof-v0')
 # env = gym.make('Reacher4Dof-v0')
 # env = gym.make('Reacher5Dof-v0')
-# env = gym.make('Reacher6Dof-v0')
+env = gym.make('Reacher6Dof-v0')
 
 # print("starting check")
 # check_env(env, warn=True)
@@ -25,7 +25,7 @@ print(env.observation_space.high)
 print(env.observation_space.low)
 
 
-for episode in range(20):
+for episode in range(50):
     obs = env.reset()             
     rewards = []
     

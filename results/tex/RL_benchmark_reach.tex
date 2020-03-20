@@ -18,7 +18,32 @@
 \maketitle
 
 
+\section{Introduction and methods}
+
+The Reacher environment is used to benchmark the performance of selected RL algorithms. The Reacher environments are composed of 1 to 6 joints, for example see Figure \ref{reacher6dof}. The RL algorithms tested are: A2C, ACKTR, DDPG, PPO1, PPO2, SAC and TRPO as implemented in the Stable Baselines library using the default parameters. Each agent was trained for 1M time steps. The performance metrics are defined as follows:
+
+\begin{enumerate}
+  \item Train time (min) [1] : Wall time to train for 1M time steps.
+  \item Success ratio [2] : number of successful episodes / number of reachable episodes (in this case: number of reachable episodes = 100) \\ 
+An episode is successful if the distance between the finger tip and the target is less or equal to 0.01. \\ 
+The length of a robot link is 0.1.
+  \item Average reaching time [3] : sum (number of time steps of all successful episodes) /  number of successful episodes \\ 
+An episode has a maximum of 100 time steps.
+\end{enumerate}
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{reacher6dof.png}
+\caption{The Reacher environment with 6 DoF.}
+\label{reacher6dof}
+\end{figure}
+
+
 \section{Raw results}
+
+
 
 
 % Please add the following required packages to your document preamble:
@@ -95,16 +120,7 @@ Environment                                                                     
 %\end{table}
 
 
-[1] Train time (min) : Wall time to train for 1M time steps. \\ 
 
-[2] Success ratio: number of successful episodes / number of reachable episodes (in this case: number of reachable episodes = 100) \\ 
-An episode is successful if the distance between the finger tip and the target is less or equal to 0.01. \\ 
-The length of a robot link is 0.1.
-
-[3] Average reaching time : sum (number of time steps of all successful episodes) /  number of successful episodes \\ 
-An episode has a maximum of 100 time steps. \\ 
-
-The RL algorithm used here are from the Stable baselines baselines implementation using the default parameters. \\ 
 
 
 
@@ -207,227 +223,25 @@ Complexity to add later:
 \end{figure}
 
 
-%
-%
-%\section{Continous recording: OK}
-%
-%1h of data = 11 MB \\
-%approx 100 GB for 1 year of data
-%
-%
-%\section{CSklearn classification}
-%
-%\begin{longtable}
-%
-%
-%
-%
-%
-%\begin{enumerate}
-%  \item Reformat training data to match format from DAQ
-%  \item Extract features
-%  \item Impute NaNs
-%  \item Train test split
-%  \item Iterate over decomposition and classifiers
-%  \begin{enumerate}
-%     \item Build pipeline object: standardscaler > decomposition > (minmaxscaler) > classifier
-%     \item Fit model
-%     \item Calculate train, test and cross-validation accuracy   
-%     \item Plot decision boundary
-%  \end{enumerate}  
-%  \item Select best model and save the trained model as a binary
-%  \item Classify real-time incoming data using the trained model
-%  
-%\end{enumerate}
-%
-%\subsection{Standard scaler + Decomposition + Classifier}
-%
-%
-%\begin{figure}[H]
-%\centering
-%\begin{subfigure}{0.49\textwidth}
-%  \centering
-%  \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/plots/11_dim_red_real_time/std_dec_clf/best/IncrementalPCA_BaggingClassifier_xval_93.78_test_100.0_train_100.0.png} 
-%
-%\end{subfigure}
-%\begin{subfigure}{0.49\textwidth}
-%  \centering
-%  \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/plots/11_dim_red_real_time/std_dec_clf/best/IncrementalPCA_GaussianNB_xval_93.94_test_89.56_train_97.06.png} 
-%
-%\end{subfigure}
-%\end{figure}
-%
-%
-%\begin{figure}[H]
-%\centering
-%\begin{subfigure}{0.49\textwidth}
-%  \centering
-%  \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/plots/11_dim_red_real_time/std_dec_clf/best/IncrementalPCA_RandomForestClassifier_xval_93.78_test_100.0_train_100.0.png} 
-%
-%\end{subfigure}
-%\begin{subfigure}{0.49\textwidth}
-%  \centering
-%  \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/plots/11_dim_red_real_time/std_dec_clf/best/KernelPCA_DecisionTreeClassifier_xval_93.78_test_89.56_train_100.0.png} 
-%
-%\end{subfigure}
-%\end{figure}
-%
-%\begin{figure}[H]
-%\centering
-%\begin{subfigure}{0.49\textwidth}
-%  \centering
-%  \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/plots/11_dim_red_real_time/std_dec_clf/best/KernelPCA_GaussianNB_xval_93.94_test_89.56_train_97.06.png} 
-%
-%\end{subfigure}
-%\begin{subfigure}{0.49\textwidth}
-%  \centering
-%  \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/plots/11_dim_red_real_time/std_dec_clf/best/NMF_ExtraTreeClassifier_xval_94.64_test_89.56_train_100.0.png} 
-%
-%\end{subfigure}
-%\end{figure}
-%
-%\begin{figure}[H]
-%\centering
-%\begin{subfigure}{0.49\textwidth}
-%  \centering
-%  \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/plots/11_dim_red_real_time/std_dec_clf/best/PCA_DecisionTreeClassifier_xval_93.78_test_89.56_train_100.0.png} 
-%
-%\end{subfigure}
-%\begin{subfigure}{0.49\textwidth}
-%  \centering
-%  \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/plots/11_dim_red_real_time/std_dec_clf/best/PCA_GaussianNB_xval_93.94_test_89.56_train_97.06.png} 
-%
-%\end{subfigure}
-%\end{figure}
-%
-%\begin{figure}[H]
-%\centering
-%\begin{subfigure}{0.49\textwidth}
-%  \centering
-%  \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/plots/11_dim_red_real_time/std_dec_clf/best/PCA_GaussianProcessClassifier_xval_85.0_test_100.0_train_100.0.png} 
-%
-%\end{subfigure}
-%\begin{subfigure}{0.49\textwidth}
-%  \centering
-%  \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/plots/11_dim_red_real_time/std_dec_clf/best/TruncatedSVD_GaussianNB_xval_94.43_test_100.0_train_94.07.png} 
-%
-%\end{subfigure}
-%\end{figure}
-%
-%
-%
-%\begin{table}[H]
-%\begin{tabular}{lllll}
-%\textbf{decomposition} & \textbf{algorithm}         & \textbf{cross-validation} & \textbf{training accuracy} & \textbf{test accuracy} \\ \hline
-%NMF                    & ExtraTreeClassifier        & 94.64                     & 100                        & 89.56                  \\
-%TruncatedSVD           & GaussianNB                 & 94.43                     & 94.07                      & 100                    \\
-%PCA                    & GaussianNB                 & 93.94                     & 97.06                      & 89.56                  \\
-%KernelPCA              & GaussianNB                 & 93.94                     & 97.06                      & 89.56                  \\
-%IncrementalPCA         & GaussianNB                 & 93.94                     & 97.06                      & 89.56                  \\
-%IncrementalPCA         & BaggingClassifier          & 93.78                     & 100                        & 100                    \\
-%KernelPCA              & DecisionTreeClassifier     & 93.78                     & 100                        & 89.56                  \\
-%PCA                    & DecisionTreeClassifier     & 93.78                     & 100                        & 89.56                  \\
-%IncrementalPCA         & RandomForestClassifier     & 93.78                     & 100                        & 100                    \\
-%PCA                    & GradientBoostingClassifier & 93.78                     & 100                        & 89.56                 
-%\end{tabular}
-%\end{table}
-%
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/code/4_real_time_classification/9_train_model_pipeline_std_dec_clf/KernelPCA_GaussianNB_xval_93.94_test_89.56_train_97.06.png} 
-%\caption{best model with standard scaler + kernelPCA + GaussianNB}
-%\end{figure}
-%
-%
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/code/4_real_time_classification/9_train_model_pipeline_std_dec_clf/on_example_file_KernelPCA_GaussianNB.png} 
-%\caption{Using example file}
-%\end{figure}
-%
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/code/4_real_time_classification/9_train_model_pipeline_std_dec_clf/real_time_3steps.png} 
-%\caption{Using real-time data}
-%\end{figure}
-%
-%
-%New data point is miles away...
-%
-%
-%\subsection{Standard scaler + Decomposition + MinMaxScaler + Classifier}
-%
-%
-%\begin{table}[H]
-%\begin{tabular}{lllll}
-%\textbf{decomposition} & \textbf{algorithm}     & \textbf{cross-validation} & \textbf{training accuracy} & \textbf{test accuracy} \\ \hline
-%NMF                    & KNeighborsClassifier   & 95.28                     & 91.09                      & 100                    \\
-%TruncatedSVD           & GaussianNB             & 94.43                     & 94.07                      & 100                    \\
-%FastICA                & SVC                    & 94.18                     & 97.06                      & 100                    \\
-%IncrementalPCA         & GaussianNB             & 93.94                     & 97.06                      & 89.56                  \\
-%KernelPCA              & GaussianNB             & 93.94                     & 97.06                      & 89.56                  \\
-%PCA                    & GaussianNB             & 93.94                     & 97.06                      & 89.56                  \\
-%KernelPCA              & DecisionTreeClassifier & 93.78                     & 100                        & 100                    \\
-%KernelPCA              & BaggingClassifier      & 93.78                     & 100                        & 100                    \\
-%IncrementalPCA         & DecisionTreeClassifier & 93.78                     & 100                        & 89.56                  \\
-%PCA                    & RandomForestClassifier & 93.78                     & 100                        & 89.56                  \\
-%PCA                    & DecisionTreeClassifier & 93.78                     & 100                        & 89.56                 
-%\end{tabular}
-%\end{table}
-%
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/code/4_real_time_classification/10_train_model_pipeline_std_dec_minmax_clf/KernelPCA_BaggingClassifier_xval_90.99_test_100.0_train_100.0.png} 
-%\caption{best model with standard scaler + kernelPCA + BaggingClassifier}
-%\end{figure}
-%
-%
-%
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/code/4_real_time_classification/10_train_model_pipeline_std_dec_minmax_clf/on_example_fileKernelPCA_BaggingClassifier.png} 
-%\caption{Using example file}
-%\end{figure}
-%
-%
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/code/4_real_time_classification/10_train_model_pipeline_std_dec_minmax_clf/real_time_4steps.png} 
-%\caption{Using real-time data}
-%\end{figure}
-%
-%
-%
-%\section{Statistical Process Control Chart}
-%
-%\begin{enumerate}
-%  \item Calculate mean and standard deviation of all sensors for all previous recordings (NORMAL RECORDING ONLY)
-%  \item Prompt Coblast user for 2 machine parameters: air pressure value (psi) and powder flow rate (g/min)
-%  \item Lookup corresponding mean and std deviation + plot horizontal line (mean, +3 std, -3 std)
-%  \item If $>$ 10\% of the last 10,000 data points are outside the bounds: flag anomaly
-%
-%  
-%\end{enumerate}
-%
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{../../Data_and_plots/tests_19.11.25-26/code/4_real_time_classification/2020-01-14-131948_1366x768_scrot.png} 
-%\caption{Using real-time data}
-%\end{figure}
-%
-%This method only uses the "normal" training data.
-%It would be better to record 1 months of data and to retrain the model.
-%How to calculate accuracy (FP, TP, FN, FP) with SPC?
-%
-%
-%
+
+\section{Findings summary}
+
+\begin{enumerate}
+  \item The training time increases as the environment complexity increases (i.e. robot with a higher number of joints), which is expected.
+  \item SAC and DDPG are the least time-efficient algorithms for the Reacher environment.
+  \item SAC achieved the higher success ratio.
+  \item In general, the algorithms achieved a very low success ratio. As indicated in the Stable Baselines documentation, it is recommended to normalise the observations, actions and rewards and to tune the algorithm's hyperparameters to increase the performance. Also, regarding the performance evaluation of the agents, it is necessary to initialise the training with various random seeds and take the average performance in order to obtain a more meaningful comparison.
+  \item A robot with more joints will generally take more time steps to reach the target, as expected.
+  \item The best agent was trained with ACKTR for the 2DoF Reacher environment (0.91 success ratio).
+\end{enumerate}
+
+The next steps will consist in:
+\begin{enumerate}
+	\item normalising the observations, actions and rewards.
+	\item carrying out hyperparameter tuning.
+	\item initialising the training with various random seeds and average performance over these trained environments.
+\end{enumerate}
+ 
 
 
 \end{document}
