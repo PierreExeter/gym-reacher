@@ -24,50 +24,32 @@ from stable_baselines.common.evaluation import evaluate_policy
 from stable_baselines.common import set_global_seeds
 from stable_baselines.common.policies import MlpPolicy, MlpLstmPolicy, MlpLnLstmPolicy
 from stable_baselines.common.vec_env import DummyVecEnv, VecNormalize
+from stable_baselines.common.vec_env import DummyVecEnv, VecCheckNan
 
+class NanAndInfEnv(gym.Env):
+    """Custom Environment that raised NaNs and Infs"""
+    metadata = {'render.modes': ['human']}
 
-class NormalizeActionWrapper(gym.Wrapper):
-  """
-  :param env: (gym.Env) Gym environment that will be wrapped
-  """
-  def __init__(self, env):
-    # Retrieve the action space
-    action_space = env.action_space
-    assert isinstance(action_space, gym.spaces.Box), "This wrapper only works with continuous action space (spaces.Box)"
-    # Retrieve the max/min values
-    self.low, self.high = action_space.low, action_space.high
+    def __init__(self):
+        super(NanAndInfEnv, self).__init__()
+        self.action_space = spaces.Box(low=-np.inf, high=np.inf, shape=(1,), dtype=np.float64)
+        self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(1,), dtype=np.float64)
 
-    # We modify the action space, so all actions will lie in [-1, 1]
-    env.action_space = gym.spaces.Box(low=-1, high=1, shape=action_space.shape, dtype=np.float32)
+    def step(self, _action):
+        randf = np.random.rand()
+        if randf > 0.99:
+            obs = float('NaN')
+        elif randf > 0.98:
+            obs = float('inf')
+        else:
+            obs = randf
+        return [obs], 0.0, False, {}
 
-    # Call the parent constructor, so we can access self.env later
-    super(NormalizeActionWrapper, self).__init__(env)
-  
-  def rescale_action(self, scaled_action):
-      """
-      Rescale the action from [-1, 1] to [low, high]
-      (no need for symmetric action space)
-      :param scaled_action: (np.ndarray)
-      :return: (np.ndarray)
-      """
-      return self.low + (0.5 * (scaled_action + 1.0) * (self.high -  self.low))
+    def reset(self):
+        return [0.0]
 
-  def reset(self):
-    """
-    Reset the environment 
-    """
-    # Reset the counter
-    return self.env.reset()
-
-  def step(self, action):
-    """
-    :param action: ([float] or int) Action taken by the agent
-    :return: (np.ndarray, float, bool, dict) observation, reward, is the episode over?, additional informations
-    """
-    # Rescale action from [-1, 1] to original [low, high] interval
-    rescaled_action = self.rescale_action(action)
-    obs, reward, done, info = self.env.step(rescaled_action)
-    return obs, reward, done, info
+    def render(self, mode='human', close=False):
+        pass
 
 
 def make_env(env_id, rank, seed=0):
@@ -80,7 +62,6 @@ def make_env(env_id, rank, seed=0):
     """
     def _init():
         env = gym.make(env_id)
-        env = NormalizeActionWrapper(env_id)
         # Important: use a different seed for each environment
         env.seed(seed + rank)
         return env
@@ -162,16 +143,20 @@ env_id = 'Reacher3Dof-v0'
 
 def create_env(env_id):
 
-    # env = gym.make(env_id)
-    # env = DummyVecEnv([lambda: env])
-    env = DummyVecEnv([make_env(env_id, i, seed=0) for i in range(n_env)])
+    # check for NaNs (I get NaNs when using DummyVecEnv)
+    # env = DummyVecEnv([lambda: NanAndInfEnv()])   
+    # env = VecCheckNan(env, raise_exception=True)
+
+    env = gym.make(env_id)
+    env = DummyVecEnv([lambda: env])
+    # env = DummyVecEnv([make_env(env_id, i, seed=0) for i in range(n_env)])
     # env = SubprocVecEnv([make_env(env_id, i) for i in range(n_env)])
     # env = VecNormalize(env)  
     
 
-    # eval_env = gym.make(env_id)
-    # eval_env = DummyVecEnv([lambda: eval_env])
-    eval_env = DummyVecEnv([make_env(env_id, i, seed=0) for i in range(n_env)])
+    eval_env = gym.make(env_id)
+    eval_env = DummyVecEnv([lambda: eval_env])
+    # eval_env = DummyVecEnv([make_env(env_id, i, seed=0) for i in range(n_env)])
     # eval_env = SubprocVecEnv([make_env(env_id, i) for i in range(n_env)])
     # eval_env = VecNormalize(eval_env)  
     
@@ -208,9 +193,16 @@ def optimize_agent(trial):
 
 if __name__ == '__main__':
     study = optuna.create_study()
-    study.optimize(optimize_agent, n_trials=100, n_jobs=-1)
+    study.optimize(optimize_agent, n_trials=2, n_jobs=-1)
 
     best_params = study.best_params
+
+    
+    if best_params['n_steps'] < best_params['batch_size']:
+        best_params['nminibatches'] = 1
+    else:
+        best_params['nminibatches'] = int(best_params['n_steps'] / best_params['batch_size'])
+
     del best_params['batch_size']    # batch_size is not a PPO2 parameter
     print("best params: ", best_params)
     # print("best value: ", study.best_value)
@@ -223,7 +215,7 @@ if __name__ == '__main__':
     env, eval_env = create_env(env_id)
     model = PPO2(MlpPolicy, env, verbose=1, **best_params)
     start = time.time()
-    model.learn(total_timesteps=100000)
+    model.learn(total_timesteps=10000)
     end = time.time()
 
     print("training time (s): ", end-start)

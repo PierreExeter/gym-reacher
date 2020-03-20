@@ -1,7 +1,8 @@
-cliprange: 0.1
-ent_coef: 1.4430420955386195e-06
-gamma: 0.999
-lam: 0.9
-learning_rate: 0.0009037314744300471
-n_steps: 256
-noptepochs: 1
+cliprange: 0.4
+ent_coef: 0.001419345435795364
+gamma: 0.98
+lam: 0.95
+learning_rate: 0.010864238780296518
+n_steps: 2048
+nminibatches: 16
+noptepochs: 50

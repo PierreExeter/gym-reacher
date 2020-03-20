@@ -168,7 +168,7 @@ class Reacher3(MJCFBasedRobot):
 
             _, self.dist_target_origin, _, self.max_reach = self.robot_info()
 
-    def apply_action(self, a):
+    def apply_action(self, a):           
         assert (np.isfinite(a).all())
         self.joint0.set_motor_torque(0.05 * float(np.clip(a[0], -1, +1)))
         self.joint1.set_motor_torque(0.05 * float(np.clip(a[1], -1, +1)))

@@ -19,6 +19,7 @@ class ReacherBulletEnv1(BaseBulletEnv):
 
     def step(self, a):
         assert (not self.scene.multiplayer)
+
         self.robot.apply_action(a)
         self.scene.global_step()
 
@@ -129,6 +130,7 @@ class ReacherBulletEnv3(BaseBulletEnv):
 
     def step(self, a):
         assert (not self.scene.multiplayer)
+
         self.robot.apply_action(a)
         self.scene.global_step()
 
